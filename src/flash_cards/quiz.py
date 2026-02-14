@@ -29,7 +29,7 @@ def get_next_card(session: Session) -> None | Card:
             func.avg(Rating.rating).over(
                 partition_by=Rating.card_id,
                 order_by=Rating.created_at.desc(),
-                rows=(-5, 0),
+                rows=(-10, 0),
             ).label("average_rating"),
             func.row_number().over(
                 partition_by=Rating.card_id,
